@@ -1,45 +1,29 @@
-# Jamilsoft Blog
+# Blog on JamilX
 
-A JamilX-compatible personal and professional blog for Muhammad Jamil and Jamilsoft Technologies.
+This repository is being assembled as a complete JamilX application with the blog app in `Apps/blog/`.
 
-## Current scope
+## Framework status
 
-This MVP establishes a runnable public-facing blog shell. It uses JamilX's Service/Action/Container/Prototype conventions and keeps future MySQL, AI, and social integrations server-side.
+The JamilX framework source is not yet vendored into this repository. The current GitHub integration can create or update file contents, but cannot copy a complete repository tree—including its binary assets—from `jamilsoft-bot/JamilX` in one operation. This README does not claim that the framework is already present.
 
-## Stack
+## Blog app
 
-- PHP 7.4+
-- JamilX framework conventions
-- HTML/CSS/vanilla JavaScript
-- Tailwind CDN allowed only for rapid prototyping
-- MySQL planned for persisted posts and leads
+`Apps/blog/` follows the JamilX installed-app bootstrap pattern: `blog.php` loads the app prototype and service, `services.php` defines the `blog` service, and `containers/index.php` renders the public landing page. Posts are temporary in-memory sample records.
 
-## Structure
+The JamilX framework loads installed apps from the database, so the app must be installed/configured through JamilX before `/blog` is routable.
 
-```text
-services/        Route-level blog service
-actions/         HTTP and page actions
-containers/      PHP views and layouts
-prototypes/      In-memory seed data and future DB helpers
-assets/          Stylesheets and scripts
-database/        Future migrations and seeders
-```
+## Framework source
 
-## Run locally
+- Upstream: https://github.com/jamilsoft-bot/JamilX
+- Upstream branch inspected: `master`
+- Upstream commit inspected: `367b523f8ad897ad4d58eadb56c5b7f85ffa6733`
+- Upstream license file: MIT; verify applicable terms for any additional bundled assets before redistribution.
 
-Use JamilX's PHP server from the framework root after placing or linking this application inside the JamilX `Apps/Blog` convention:
+## Next setup steps
 
-```bash
-php jamilx doctor
-php jamilx serve
-```
+1. Import the full upstream JamilX `master` tree at the repository root, preserving its files and assets.
+2. Keep the blog app under `Apps/blog/` and install the app in JamilX.
+3. Configure a local `.env` using the framework's `.env.example`; do not commit credentials.
+4. Replace sample posts with parameterized MySQL queries and add article-detail routing.
 
-Before deployment, confirm JamilX routing and database setup. This MVP can also be previewed with any PHP-capable local server, but JamilX routing remains the authoritative integration.
-
-## Next implementation phases
-
-1. Persist posts and taxonomy in MySQL.
-2. Add JamilX authentication and editorial routes.
-3. Add lead capture and status management.
-4. Add Groq-assisted drafting behind server-side controls.
-5. Add approved social-sharing jobs and cron execution.
+After the framework import, JamilX's documented local checks are `php jamilx doctor` and `php jamilx serve` (PHP 7.4+, required extensions, and MySQL/MariaDB configuration).
